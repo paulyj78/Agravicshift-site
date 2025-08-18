@@ -16,7 +16,6 @@ It’s built as a simple, responsive static site and deployed using **GitHub Pag
 
 ---
 
-## 🛠 Local Setup
-1. Clone this repo:
-   ```bash
-   git clone https://github.com/paulyj78/agravicshift-site.git
+## 📄 License
+This website is copyright © 2025 Agravic Shift.  
+All rights reserved. Not for redistribution.
