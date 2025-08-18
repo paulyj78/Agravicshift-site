@@ -23,7 +23,7 @@ header {
 }
 
 .logo img {
-  height: 50px;   /* <- original safe size */
+  height: 100px;   /* <- original safe size */
   width: auto;
 }
 
