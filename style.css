@@ -297,8 +297,9 @@ footer {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  margin-top: 2rem;
+  margin: 2rem auto 0;    /* center it */
   text-align: left;
+  max-width: 800px;       /* keep it from stretching too wide */
 }
 
 .comparison h3 {
