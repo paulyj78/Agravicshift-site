@@ -404,3 +404,40 @@ footer {
     justify-items: center;
   }
 }
+/* === Tablet / iPad Fixes === */
+@media (min-width: 601px) and (max-width: 1024px) {
+  /* Header: prevent logo/nav overlap */
+  header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  nav ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  /* Signup card: widen so text doesn’t collapse */
+  .signup-card {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .signup-title {
+    font-size: 1.8rem;  /* stays bold but fits on one line */
+  }
+
+  .iframe-wrap iframe {
+    height: 460px; /* give more room for iPad layout */
+  }
+
+  /* Comparison section: keep centered & balanced */
+  .comparison {
+    grid-template-columns: 1fr 1fr;
+    max-width: 700px;
+  }
+}
