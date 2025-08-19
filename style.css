@@ -145,3 +145,38 @@ footer {
   padding: 1rem;
   margin-top: 2rem;
 }
+/* === Brevo form polish (added at bottom) === */
+.signup-brevo { max-width: 720px; margin: 0 auto; }
+.sib-container {
+  background: linear-gradient(120deg, #ff6a00, #ff8a33);
+  padding: 1.25rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+#sib-form { display:flex; gap:0.6rem; justify-content:center; flex-wrap:wrap; }
+#sib-form .input {
+  padding:0.8rem 1rem; border:none; border-radius:8px;
+  width:320px; max-width:100%; outline:none;
+}
+#sib-form .btn.primary {
+  background:#111; color:#fff; border:none; border-radius:8px;
+  padding:0.85rem 1.3rem; font-weight:700; cursor:pointer;
+}
+#sib-form .btn.primary:hover { background:#222; }
+.form-note {
+  color:#fff; opacity:0.9; margin-top:0.6rem;
+  font-size:0.9rem; text-align:center;
+}
+.form-error, .form-success {
+  display:none; margin:0.5rem auto 0; max-width:540px;
+  text-align:center; font-size:0.95rem;
+  border-radius:6px; padding:0.6rem 0.9rem;
+}
+.form-error { background:#ffeded; color:#661d1d; border:1px solid #ff4949; }
+.form-success { background:#e7faf0; color:#085229; border:1px solid #13ce66; }
+
+/* Hide visual label but keep for screen readers */
+.visually-hidden {
+  position:absolute; width:1px; height:1px; padding:0;
+  margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;
+}
