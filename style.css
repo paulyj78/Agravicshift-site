@@ -441,3 +441,12 @@ footer {
     max-width: 700px;
   }
 }
+/* DEBUG: tablet flag — remove after confirming */
+@media (min-width: 601px) and (max-width: 1024px) {
+  html::after {
+    content: "tablet-css"; 
+    position: fixed; right: 6px; bottom: 6px;
+    background: #000; color: #fff; font-size: 10px; 
+    padding: 2px 4px; z-index: 9999;
+  }
+}
