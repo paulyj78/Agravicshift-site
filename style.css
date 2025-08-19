@@ -312,6 +312,15 @@ footer {
   line-height: 1.4;
 }
 
+/* Why section punchline */
+.why strong {
+  display: block;
+  margin-top: 1rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #ff9900;   /* your accent orange */
+}
+
 /* Mobile: stack the columns */
 @media (max-width: 820px) {
   .comparison {
