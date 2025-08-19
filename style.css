@@ -292,3 +292,34 @@ footer {
     grid-template-columns: 1fr; /* stack pricing cards */
   }
 }
+/* Comparison Grid (Why Section) */
+.comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.comparison h3 {
+  margin-bottom: 0.5rem;
+  color: #ff9900;
+  font-size: 1.2rem;
+}
+
+.comparison ul {
+  list-style: none;
+  padding: 0;
+}
+
+.comparison li {
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+/* Mobile: stack the columns */
+@media (max-width: 768px) {
+  .comparison {
+    grid-template-columns: 1fr;
+  }
+}
