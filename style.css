@@ -320,6 +320,81 @@ footer {
   font-weight: bold;
   color: #ff9900;   /* your accent orange */
 }
+/* ==== Mobile polish (phones & small tablets) ==== */
+@media (max-width: 640px) {
+  /* Header: prevent overlap, stack neatly */
+  header {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 0.75rem 1rem;
+  }
+  .logo img {
+    height: 64px;       /* was 100px */
+    width: auto;
+  }
+  nav ul {
+    gap: 0.75rem;
+    flex-wrap: wrap;     /* allow wrapping instead of overlap */
+    justify-content: center;
+  }
+  nav a {
+    font-size: 0.95rem;
+  }
+
+  /* Hero spacing & type scale */
+  .hero {
+    padding: 3rem 1.25rem;
+  }
+  .hero h1 {
+    font-size: 1.9rem;
+    line-height: 1.2;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+
+  /* Features stack */
+  .features {
+    grid-template-columns: 1fr;
+    padding: 2rem 1rem;
+  }
+
+  /* Signup section (Brevo iframe wrapper) */
+  .signup {
+    padding: 2rem 1rem;
+  }
+  .signup-embed {
+    max-width: 560px;   /* wider on phones so it doesn't feel narrow */
+    width: 100%;
+    margin: 0 auto;
+  }
+  .signup-card {
+    padding: 16px;
+    border-radius: 12px;
+  }
+  .signup-title {
+    font-size: 1.2rem;   /* reduce so it doesn’t wrap to 3 lines */
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .signup-sub {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+  }
+  .iframe-wrap {
+    padding: 8px;        /* tighter frame on small screens */
+    border-radius: 10px;
+  }
+  .iframe-wrap iframe {
+    height: 500px;       /* a bit taller to avoid inner scrolling */
+  }
+
+  /* Why comparison grid padding on phones */
+  .comparison {
+    padding: 0 12px;
+  }
+}
 
 /* Mobile: stack the columns */
 @media (max-width: 820px) {
