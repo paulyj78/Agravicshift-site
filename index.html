@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Agravic Shift</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Brevo minimal styles (keeps wiring happy; visual styling stays in your CSS) -->
+  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
 </head>
 <body>
   <!-- Header / Logo -->
@@ -62,15 +64,56 @@
   <section id="signup" class="signup">
     <h2>Get Early Access</h2>
     <p>Sign up today and be the first to get the Manager Toolkit when it launches.</p>
-    <form>
-      <input type="email" placeholder="Your email address" required />
-      <button type="submit">Sign Up</button>
-    </form>
+
+    <!-- BEGIN: Brevo form (restyled, keeps Brevo wiring) -->
+    <div class="signup-brevo">
+      <!-- Brevo success/error containers (Brevo JS toggles these) -->
+      <div id="error-message" class="form-error" aria-live="polite"></div>
+      <div id="success-message" class="form-success" aria-live="polite"></div>
+
+      <div id="sib-container" class="sib-container">
+        <form id="sib-form"
+              method="POST"
+              action="https://52bcf355.sibforms.com/serve/MUIFAILFZZ4tv7WgzaTRRcys7Axth5y4hEF1qAkb-3L3AopeT_FQYogxy_kdcWhvBXC7hQlpoHE8A8ifKcLmjI6mgVhNBLfmVrmtAUOhbno-E9D23CBjcvvguoPOIL-ZzydZPxACtqSFScYwZT2jnUkL_l4TIwM_uZw6E6dJajBRgWv4lYN26oIuBvCHvhIkRu5p2flH7J4-TKfj"
+              data-type="subscription">
+          <label for="EMAIL" class="visually-hidden">Email address</label>
+          <input class="input" type="email" id="EMAIL" name="EMAIL"
+                 autocomplete="email" placeholder="Your email address" required />
+
+          <!-- Brevo-required fields (do not remove) -->
+          <input type="text" name="email_address_check" value="" class="input--hidden">
+          <input type="hidden" name="locale" value="en">
+
+          <button class="btn primary" type="submit">Join Now</button>
+        </form>
+        <p class="form-note">No spam. Unsubscribe anytime.</p>
+      </div>
+    </div>
+    <!-- END: Brevo form -->
   </section>
 
   <!-- Footer -->
   <footer>
     <p>&copy; 2025 Agravic Shift. All rights reserved.</p>
   </footer>
+
+  <!-- Brevo scripts (required) -->
+  <script>
+    window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';
+    window.LOCALE = 'en';
+    window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
+    window.REQUIRED_ERROR_MESSAGE = "This field cannot be left blank. ";
+    window.GENERIC_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
+    window.translation = {
+      common: {
+        selectedList: '{quantity} list selected',
+        selectedLists: '{quantity} lists selected',
+        selectedOption: '{quantity} selected',
+        selectedOptions: '{quantity} selected',
+      }
+    };
+    var AUTOHIDE = Boolean(0);
+  </script>
+  <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
 </body>
 </html>
