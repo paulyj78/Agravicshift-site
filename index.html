@@ -7,6 +7,43 @@
 
   <!-- Versioned CSS to break cache -->
   <link rel="stylesheet" href="style.css?v=11" />
+  <!-- TEMP: Inline tablet overrides to force visible changes -->
+<style>
+  @media (min-width: 768px) and (max-width: 1024px) {
+    /* big visible proof */
+    .hero { outline: 4px solid #00c2ff !important; }
+
+    header {
+      flex-direction: column !important;
+      align-items: center !important;
+      gap: 10px !important;
+      padding: 1rem 1rem !important;
+      text-align: center !important;
+    }
+    .logo img { height: 80px !important; width: auto !important; }
+    nav ul {
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+      gap: 1rem !important;
+      margin-top: 0.25rem !important;
+    }
+    nav a { font-size: 1rem !important; }
+
+    .signup-embed { max-width: 860px !important; width: 100% !important; margin: 0 auto !important; }
+    .signup-card { padding: 20px !important; border-radius: 14px !important; }
+    .signup-title { font-size: 1.5rem !important; line-height: 1.25 !important; margin-bottom: 8px !important; }
+    .iframe-wrap iframe { height: 480px !important; }
+
+    .comparison {
+      grid-template-columns: 1fr 1fr !important;
+      max-width: 760px !important;
+      margin: 2rem auto 0 !important;
+      justify-items: center !important;
+      padding: 0 16px !important;
+    }
+    .comparison > div { max-width: 380px !important; width: 100% !important; }
+  }
+</style>
 
   <!-- Brevo minimal styles (optional for iframe) -->
   <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
