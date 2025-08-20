@@ -5,74 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Agravic Shift</title>
 
-  <!-- Versioned CSS to break cache -->
-  <link rel="stylesheet" href="style.css?v=18" />
-  <!-- TEMP: Inline tablet overrides to force visible changes -->
-<style>
-  @media (min-width: 768px) and (max-width: 1024px) {
-    /* big visible proof */
-    .hero { outline: 4px solid #00c2ff !important; }
+  <!-- Your stylesheet (cache-busted) -->
+  <link rel="stylesheet" href="style.css?v=20" />
 
-    header {
-      flex-direction: column !important;
-      align-items: center !important;
-      gap: 10px !important;
-      padding: 1rem 1rem !important;
-      text-align: center !important;
-    }
-    .logo img { height: 80px !important; width: auto !important; }
-    nav ul {
-      flex-wrap: wrap !important;
-      justify-content: center !important;
-      gap: 1rem !important;
-      margin-top: 0.25rem !important;
-    }
-    nav a { font-size: 1rem !important; }
-
-    .signup-embed { max-width: 860px !important; width: 100% !important; margin: 0 auto !important; }
-    .signup-card { padding: 20px !important; border-radius: 14px !important; }
-    .signup-title { font-size: 1.5rem !important; line-height: 1.25 !important; margin-bottom: 8px !important; }
-    .iframe-wrap iframe { height: 480px !important; }
-
-    .comparison {
-      grid-template-columns: 1fr 1fr !important;
-      max-width: 760px !important;
-      margin: 2rem auto 0 !important;
-      justify-items: center !important;
-      padding: 0 16px !important;
-    }
-    .comparison > div { max-width: 380px !important; width: 100% !important; }
-  }
-</style>
-
-  <!-- Brevo minimal styles (optional for iframe) -->
+  <!-- Brevo styles (harmless with iframe; keep if you later switch to inline form) -->
   <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
-
-  <!-- TEMP: iPad debug styles — remove after test -->
-  <style>
-    @media (min-width: 601px) and (max-width: 1180px) {
-      body::before {
-        content: "iPad rules active";
-        position: fixed;
-        left: 8px; bottom: 8px;
-        background: #ff0066; color: #fff;
-        font: 600 12px/1.2 Arial, sans-serif;
-        padding: 4px 6px; z-index: 99999;
-        border-radius: 4px;
-      }
-    }
-  </style>
 </head>
 <body>
-  <body>
-  <!-- TEMP: SMOKE TEST — remove later -->
-  <div style="background:#ff0066;color:#fff;text-align:center;font:600 14px/1.2 Arial;padding:10px 12px;">
-    BUILD MARKER v14 — if you can read this, you’re seeing the latest HTML
-  </div>
   <!-- Header / Logo -->
   <header>
     <div class="logo">
-      <img src="assets/logo.png" alt="Agravic Shift Logo">
+      <img src="assets/logo.png" alt="Agravic Shift Logo" />
     </div>
     <nav>
       <ul>
@@ -110,39 +53,43 @@
         <p>Access quick tips on the go—whether you’re at your desk or in the hallway.</p>
       </div>
     </div>
-  <section class="why">
-  <h2>Why Agravic Shift?</h2>
-  <p>
-    Because managing people isn’t about jargon or theory. It’s about treating people like people,
-    building trust, and knowing what to say when things get tough. Our resources are practical,
-    common-sense, and made for managers like you. Engaged employees show up stronger, deliver
-    more, and stick around longer. <strong>And respect turns into results.</strong>
-  </p>
-</section>
+  </section> <!-- ✅ Toolkit section closed -->
+
+  <!-- Why Agravic Shift -->
+  <section id="why" class="why">
+    <h2>Why Agravic Shift?</h2>
+    <p>
+      Because managing people isn’t about jargon or theory. It’s about treating people like people,
+      building trust, and knowing what to say when things get tough. Our resources are practical,
+      common-sense, and made for managers like you.
+      Engaged employees show up stronger, deliver more, and stick around longer.
+      <strong>And respect turns into results.</strong>
+    </p>
+  </section>
 
   <!-- Signup -->
   <section id="signup" class="signup">
     <h2>Get Early Access</h2>
     <p>Sign up today and be the first to get the Manager Toolkit when it launches.</p>
 
-    <!-- Brevo iframe embed (styled wrapper to match site) -->
-<div class="signup-embed">
-  <div class="signup-card">
-    <h3 class="signup-title">Join Early Access</h3>
-    <p class="signup-sub">Practical, no-BS tools for modern managers.</p>
+    <!-- Brevo iframe embed inside branded wrapper -->
+    <div class="signup-embed">
+      <div class="signup-card">
+        <h3 class="signup-title">Join Early Access</h3>
+        <p class="signup-sub">Practical, no-BS tools for modern managers.</p>
 
-    <div class="iframe-wrap">
-      <iframe
-        src="https://52bcf355.sibforms.com/serve/MUIFAB0vGvHVK0gzACbakEbxp0VRgS_8ts4Lh6Wo2UhBTbn3_SIKwhcQanKNDFXPN2l7sTgmIEHOqHSXsEX83CfZiTFBHcX9ryVjUsk4c3L2tXzrtkuINtYJpSv0ilY_ZZtQ6qEnDXeh5S7Z7SzehQG5RQwCpYb2QH2Dia1OfBGAekbO4CEnlQWy1x-wiALALj_dQEc4N0Gr2ZCp"
-        title="Agravic Shift Early Access Form"
-        loading="lazy"
-        width="100%" height="380" frameborder="0" scrolling="auto" allowfullscreen>
-      </iframe>
+        <div class="iframe-wrap">
+          <iframe
+            src="https://52bcf355.sibforms.com/serve/MUIFAB0vGvHVK0gzACbakEbxp0VRgS_8ts4Lh6Wo2UhBTbn3_SIKwhcQanKNDFXPN2l7sTgmIEHOqHSXsEX83CfZiTFBHcX9ryVjUsk4c3L2tXzrtkuINtYJpSv0ilY_ZZtQ6qEnDXeh5S7Z7SzehQG5RQwCpYb2QH2Dia1OfBGAekbO4CEnlQWy1x-wiALALj_dQEc4N0Gr2ZCp"
+            title="Agravic Shift Early Access Form"
+            loading="lazy"
+            width="100%" height="380" frameborder="0" scrolling="auto" allowfullscreen>
+          </iframe>
+        </div>
+
+        <p class="signup-note">No spam. Unsubscribe anytime.</p>
+      </div>
     </div>
-
-    <p class="signup-note">No spam. Unsubscribe anytime.</p>
-  </div>
-</div>
   </section>
 
   <!-- Footer -->
