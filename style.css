@@ -470,3 +470,70 @@ footer {
     width: 100%;
   }
 }
+/* ===== HOTFIX: make phones <=560px only, restore tablet layout ===== */
+
+/* Phone-only tweaks (<=560px) */
+@media (max-width: 560px) {
+  /* Header stacks, smaller logo */
+  header { flex-direction: column; align-items: center; gap: 8px; padding: 0.75rem 1rem; }
+  .logo img { height: 64px; width: auto; }
+  nav ul { gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
+  nav a { font-size: 0.95rem; }
+
+  /* Hero */
+  .hero { padding: 3rem 1.25rem; }
+  .hero h1 { font-size: 1.9rem; line-height: 1.2; }
+  .hero p { font-size: 1rem; }
+
+  /* Features */
+  .features { grid-template-columns: 1fr; padding: 2rem 1rem; }
+
+  /* Signup wrapper */
+  .signup { padding: 2rem 1rem; }
+  .signup-embed { max-width: 560px; width: 100%; margin: 0 auto; }
+  .signup-card { padding: 16px; border-radius: 12px; }
+  .signup-title { font-size: 1.2rem; line-height: 1.2; margin-bottom: 6px; }
+  .signup-sub { font-size: 0.95rem; margin-bottom: 10px; }
+  .iframe-wrap { padding: 8px; border-radius: 10px; }
+  .iframe-wrap iframe { height: 500px; }
+
+  /* Why comparison grid padding */
+  .comparison { padding: 0 12px; }
+}
+
+/* Tablet/iPad layout (561–1024px): restore proper desktop-like layout */
+@media (min-width: 561px) and (max-width: 1024px) {
+  /* Header back to row layout */
+  header { 
+    flex-direction: row; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 1rem 2rem; 
+    text-align: left; 
+  }
+  .logo img { height: 90px; width: auto; }
+  nav ul { flex-wrap: wrap; gap: 1rem; justify-content: center; }
+
+  /* Hero comfortable scaling */
+  .hero { padding: 4rem 1.5rem; }
+  .hero h1 { font-size: 2.2rem; line-height: 1.25; }
+  .hero p { font-size: 1.05rem; }
+
+  /* Signup embed: wider card and sane title size */
+  .signup-embed { max-width: 860px; width: 100%; margin: 0 auto; }
+  .signup-card { padding: 20px; border-radius: 14px; }
+  .signup-title { font-size: 1.5rem; line-height: 1.25; margin-bottom: 8px; }
+  .signup-sub { font-size: 1rem; }
+  .iframe-wrap { padding: 10px; }
+  .iframe-wrap iframe { height: 480px; }
+
+  /* Why comparison grid: keep 2 columns and centered */
+  .comparison {
+    grid-template-columns: 1fr 1fr !important;
+    max-width: 760px;
+    margin: 2rem auto 0;
+    justify-items: center;
+    padding: 0 16px;
+  }
+  .comparison > div { max-width: 380px; width: 100%; }
+}
