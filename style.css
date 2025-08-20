@@ -412,3 +412,9 @@ footer {
     text-align: left;             /* reads better when stacked */
   }
 }
+/* Early Access card tweaks */
+.signup-card {
+  border: 2px solid #ff6600;   /* thinner border */
+  padding: 1rem;              /* reduce padding inside */
+  border-radius: 6px;         /* optional, softer corners */
+}
