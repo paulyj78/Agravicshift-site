@@ -432,3 +432,27 @@ footer {
   border: none !important;
   margin: 0;
 }
+/* === Tighten Early Access orange wrapper === */
+.signup-embed { max-width: 700px; margin: 0 auto; }  /* a bit narrower = less orange */
+.signup-card {
+  background: #ff6a00;
+  padding: 8px;                /* was ~20px */
+  border-radius: 12px;         /* keep soft corners */
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+}
+
+.signup-title { margin: 4px 0 2px; }
+.signup-sub   { margin: 0 0 8px; }
+
+/* Remove extra padding/border around the iframe */
+.iframe-wrap {
+  padding: 0;                  /* was 10px */
+  border: none;                /* remove subtle border */
+  border-radius: 10px;         /* keep rounding consistent */
+  overflow: hidden;
+}
+
+/* Tablet sizing for the iframe itself */
+@media (min-width: 561px) and (max-width: 1200px) {
+  .iframe-wrap iframe { height: 460px; }
+}
