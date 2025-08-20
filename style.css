@@ -265,3 +265,25 @@ footer {
 @media (min-width: 561px) and (max-width: 1200px) {
   .iframe-wrap iframe { height: 460px; }
 }
+/* Subtle card around the embedded form (no heavy orange) */
+.signup-card {
+  background: #fff !important;
+  padding: 16px !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
+  border: 1px solid rgba(0,0,0,0.06) !important;
+}
+
+.iframe-wrap {
+  background: transparent !important;  /* remove orange fill */
+  padding: 0 !important;               /* no extra frame */
+  border: none !important;
+  border-radius: 10px !important;
+  overflow: hidden;
+}
+
+.iframe-wrap iframe {
+  width: 100%;
+  height: 380px;        /* tweak if needed */
+  border: 0;
+}
