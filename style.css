@@ -1,10 +1,7 @@
-/* BUILD 14 — STYLE.CSS */
-/* Reset and base styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* ===============================
+   Base / Reset
+   =============================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
   font-family: Arial, sans-serif;
@@ -13,7 +10,9 @@ body {
   color: #333;
 }
 
-/* Header */
+/* ===============================
+   Header
+   =============================== */
 header {
   background: #111;
   color: #fff;
@@ -21,219 +20,28 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;            /* graceful wrap if space is tight */
+  row-gap: 10px;
 }
 
-.logo img {
-  height: 100px;   /* safe size */
-  width: auto;
-}
+.logo img { height: 100px; width: auto; }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-}
+nav ul { list-style: none; display: flex; gap: 1.5rem; justify-content: center; align-items: center; }
+nav a  { color: #fff; text-decoration: none; font-weight: bold; }
 
-nav a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-/* Hero Section */
+/* ===============================
+   Hero
+   =============================== */
 .hero {
   background: linear-gradient(to right, #ff6600, #ff9900);
   color: #fff;
   text-align: center;
   padding: 5rem 2rem;
 }
+.hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+.hero p  { font-size: 1.2rem; margin-bottom: 2rem; }
 
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.hero p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-}
-
-.hero .cta-btn {
-  background: #fff;
-  color: #ff6600;
-  padding: 0.8rem 1.5rem;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 5px;
-  transition: 0.3s;
-}
-
-.hero .cta-btn:hover {
-  background: #ffcc99;
-}
-
-/* Features Section */
-.features {
-  padding: 3rem 2rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
-
-.feature {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  text-align: center;
-}
-
-/* Why Section */
-.why {
-  background: #222;
-  color: #fff;
-  padding: 3rem 2rem;
-  text-align: center;
-
-  /* keep content centered */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Signup Section */
-.signup {
-  padding: 3rem 2rem;
-  text-align: center;
-}
-
-.signup form { margin-top: 1rem; }
-
-.signup input[type="email"] {
-  padding: 0.8rem;
-  width: 250px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.signup button {
-  padding: 0.8rem 1.2rem;
-  background: #ff6600;
-  color: #fff;
-  border: none;
-  margin-left: 0.5rem;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.signup button:hover { background: #ff8533; }
-
-/* Footer */
-footer {
-  background: #111;
-  color: #aaa;
-  text-align: center;
-  padding: 1rem;
-  margin-top: 2rem;
-}
-
-/* === Brevo form polish (for non-iframe setups & wrapper styling) === */
-.signup-brevo { max-width: 720px; margin: 0 auto; }
-.sib-container {
-  background: linear-gradient(120deg, #ff6a00, #ff8a33);
-  padding: 1.25rem;
-  border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-}
-#sib-form { display:flex; gap:0.6rem; justify-content:center; flex-wrap:wrap; }
-#sib-form .input {
-  padding:0.8rem 1rem; border:none; border-radius:8px;
-  width:320px; max-width:100%; outline:none;
-}
-#sib-form .btn.primary {
-  background:#111; color:#fff; border:none; border-radius:8px;
-  padding:0.85rem 1.3rem; font-weight:700; cursor:pointer;
-}
-#sib-form .btn.primary:hover { background:#222; }
-.form-note {
-  color:#fff; opacity:0.9; margin-top:0.6rem;
-  font-size:0.9rem; text-align:center;
-}
-.form-error, .form-success {
-  display:none; margin:0.5rem auto 0; max-width:540px;
-  text-align:center; font-size:0.95rem;
-  border-radius:6px; padding:0.6rem 0.9rem;
-}
-.form-error { background:#ffeded; color:#661d1d; border:1px solid #ff4949; }
-.form-success { background:#e7faf0; color:#085229; border:1px solid #13ce66; }
-
-/* Screen-reader-only label helper */
-.visually-hidden {
-  position:absolute; width:1px; height:1px; padding:0;
-  margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;
-}
-
-/* === Brevo iframe: branded wrapper === */
-.signup-embed { max-width: 760px; margin: 0 auto; }
-
-.signup-card {
-  background: linear-gradient(120deg, #ff6a00, #ff8a33);
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
-  text-align: center;
-}
-
-.signup-title { margin: 0 0 4px; color: #111; font-size: 1.6rem; }
-.signup-sub   { margin: 0 0 14px; color: rgba(17,17,17,0.9); }
-
-.iframe-wrap {
-  background: #fff;
-  border-radius: 12px;
-  padding: 10px;
-  overflow: hidden;
-  border: 1px solid rgba(0,0,0,0.06);
-}
-
-.signup-note {
-  color: #111;
-  opacity: 0.9;
-  margin-top: 10px;
-  font-size: 0.95rem;
-}
-
-/* Responsive tweaks for embed (very small screens) */
-@media (max-width: 560px) {
-  .signup-title { font-size: 1.35rem; }
-  .signup-sub   { font-size: 0.98rem; }
-  .iframe-wrap iframe { height: 420px; }
-}
-
-/* === Toolkit Page Additions === */
-.hero.toolkit-hero {
-  background: linear-gradient(to right, #ff6600, #ff9900);
-  color: #fff;
-  text-align: center;
-  padding: 4rem 2rem;
-}
-.hero.toolkit-hero h1 { font-size: 2.8rem; margin-bottom: 1rem; }
-.hero.toolkit-hero p  { font-size: 1.2rem; opacity: 0.95; }
-
-/* Pricing cards */
-.toolkit-pricing { padding: 3rem 2rem; text-align: center; }
-.toolkit-pricing .feature-grid { gap: 2rem; }
-.toolkit-pricing .feature {
-  border: 1px solid rgba(0,0,0,0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-.toolkit-pricing .feature:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-}
-
-/* Buttons */
+/* CTA buttons (if used) */
 .btn {
   display: inline-block;
   padding: 0.8rem 1.4rem;
@@ -242,12 +50,53 @@ footer {
   text-decoration: none;
   transition: background 0.3s, color 0.3s;
 }
-.btn.primary { background: #ff6600; color: #fff; }
+.btn.primary   { background: #ff6600; color: #fff; }
 .btn.primary:hover { background: #ff8533; }
 .btn.secondary { background: #eee; color: #333; }
 .btn.secondary:hover { background: #ddd; }
 
-/* === Comparison Grid (Why Section) === */
+/* ===============================
+   Features / Toolkit
+   =============================== */
+.features {
+  padding: 3rem 2rem;
+}
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+.feature {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+/* ===============================
+   Why Section
+   =============================== */
+.why {
+  background: #222;
+  color: #fff;
+  padding: 3rem 2rem;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* keep inner content centered */
+}
+
+.why strong {
+  display: block;
+  margin-top: 1rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #ff9900;
+}
+
+/* Comparison grid (if used on Why) */
 .comparison {
   display: grid;
   grid-template-columns: repeat(2, minmax(280px, 1fr));
@@ -264,195 +113,122 @@ footer {
 .comparison ul { list-style: none; padding: 0; }
 .comparison li { margin-bottom: 0.5rem; line-height: 1.4; }
 
-/* Why section punchline */
-.why strong {
-  display: block;
-  margin-top: 1rem;
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: #ff9900;
+/* ===============================
+   Signup / Early Access
+   =============================== */
+.signup { padding: 3rem 2rem; text-align: center; }
+
+/* Wrapper card & iframe frame */
+.signup-embed { max-width: 700px; margin: 0 auto; }
+.signup-card {
+  background: #ff6a00;       /* orange background */
+  padding: 10px;             /* << tightened (moderate) */
+  border-radius: 8px;        /* slightly smaller corners */
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+  margin: 0 auto;
+}
+.signup-title { margin: 4px 0 2px; color: #111; font-size: 1.6rem; }
+.signup-sub   { margin: 0 0 8px; color: rgba(17,17,17,0.9); }
+
+.iframe-wrap {
+  background: #fff;
+  border-radius: 10px;
+  padding: 0;                /* no extra white padding around iframe */
+  border: none;
+  overflow: hidden;
+}
+.iframe-wrap iframe { width: 100%; height: 380px; border: 0; }
+
+.signup-note { color: #111; opacity: 0.9; margin-top: 10px; font-size: 0.95rem; }
+
+/* ===============================
+   Footer
+   =============================== */
+footer {
+  background: #111;
+  color: #aaa;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
 }
 
-/* =========================================================
-   PHONE (<=560px)
-   ========================================================= */
-@media (max-width: 560px) {
-  /* Header stacks, smaller logo */
-  header { flex-direction: column; align-items: center; gap: 8px; padding: 0.75rem 1rem; }
-  .logo img { height: 64px; width: auto; }
-  nav ul { gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
-  nav a { font-size: 0.95rem; }
+/* ===============================
+   Toolkit page variants (if used)
+   =============================== */
+.hero.toolkit-hero { padding: 4rem 2rem; }
+.hero.toolkit-hero h1 { font-size: 2.8rem; margin-bottom: 1rem; }
+.hero.toolkit-hero p  { font-size: 1.2rem; opacity: 0.95; }
 
-  /* Hero */
+.toolkit-pricing { padding: 3rem 2rem; text-align: center; }
+.toolkit-pricing .feature-grid { gap: 2rem; }
+.toolkit-pricing .feature {
+  border: 1px solid rgba(0,0,0,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.toolkit-pricing .feature:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+/* ===============================
+   Accessibility helpers
+   =============================== */
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0;
+  margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;
+}
+
+/* ===============================
+   Responsive — Phones (<=560px)
+   =============================== */
+@media (max-width: 560px) {
+  header { flex-direction: column; align-items: center; gap: 8px; padding: 0.75rem 1rem; }
+  .logo img { height: 64px; }
+
   .hero { padding: 3rem 1.25rem; }
   .hero h1 { font-size: 1.9rem; line-height: 1.2; }
-  .hero p { font-size: 1rem; }
+  .hero p  { font-size: 1rem; }
 
-  /* Features */
-  .features { grid-template-columns: 1fr; padding: 2rem 1rem; }
+  .features { padding: 2rem 1rem; }
+  .feature-grid { grid-template-columns: 1fr; }
 
-  /* Signup wrapper */
   .signup { padding: 2rem 1rem; }
-  .signup-embed { max-width: 560px; width: 100%; margin: 0 auto; }
-  .signup-card { padding: 16px; border-radius: 12px; }
+  .signup-embed { max-width: 560px; }
   .signup-title { font-size: 1.2rem; line-height: 1.2; margin-bottom: 6px; }
-  .signup-sub { font-size: 0.95rem; margin-bottom: 10px; }
-  .iframe-wrap { padding: 8px; border-radius: 10px; }
+  .signup-sub   { font-size: 0.95rem; margin-bottom: 10px; }
   .iframe-wrap iframe { height: 500px; }
 
-  /* Why comparison grid padding */
-  .comparison { padding: 0 12px; grid-template-columns: 1fr; max-width: 600px; }
+  .comparison { grid-template-columns: 1fr; max-width: 600px; padding: 0 12px; }
 }
 
-/* Stack the comparison columns on small/medium screens only */
+/* ===============================
+   Responsive — Small/Medium stack for comparison
+   =============================== */
 @media (max-width: 700px) {
   .comparison { grid-template-columns: 1fr; max-width: 600px; justify-items: center; }
 }
 
-/* =========================================================
-   TABLET / iPAD (561–1024px)
-   ========================================================= */
-@media (min-width: 561px) and (max-width: 1024px) {
-  /* Header back to row layout */
-  header { 
-    flex-direction: row; 
-    justify-content: space-between; 
-    align-items: center; 
-    padding: 1rem 2rem; 
-    text-align: left; 
-  }
-  .logo img { height: 90px; width: auto; }
-  nav ul { flex-wrap: wrap; gap: 1rem; justify-content: center; }
+/* ===============================
+   Responsive — Tablets / iPad (561–1200px)
+   =============================== */
+@media (min-width: 561px) and (max-width: 1200px) {
+  .logo img { height: 90px; }
 
-  /* Hero comfortable scaling */
   .hero { padding: 4rem 1.5rem; }
   .hero h1 { font-size: 2.2rem; line-height: 1.25; }
-  .hero p { font-size: 1.05rem; }
-
-  /* Signup embed: wider card and sane title size */
-  .signup-embed { max-width: 860px; width: 100%; margin: 0 auto; }
-  .signup-card { padding: 20px; border-radius: 14px; }
-  .signup-title { font-size: 1.5rem; line-height: 1.25; margin-bottom: 8px; }
-  .signup-sub { font-size: 1rem; }
-  .iframe-wrap { padding: 10px; }
-  .iframe-wrap iframe { height: 480px; }
-
-  /* Why comparison grid: keep 2 columns and centered */
-  .comparison {
-    grid-template-columns: 1fr 1fr;
-    max-width: 760px;
-    margin: 2rem auto 0;
-    justify-items: center;
-    padding: 0 16px;
-  }
-  .comparison > div { max-width: 380px; width: 100%; }
-}
-/* ===== iPad / Tablet catch-all (covers iPad Pro sizes too) ===== */
-/* Targets common tablet widths + tall iPad Pro portrait */
-@media (min-width: 600px) and (max-width: 1200px),
-       (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
-
-  /* Header: keep row layout so logo/nav don't collide */
-  header {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    text-align: left;
-  }
-
-  .logo img { height: 90px; width: auto; }
-
-  nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 0;   /* avoid accidental pushdown */
-  }
-  nav a { font-size: 1rem; }
-
-  /* Hero comfortable scaling */
-  .hero { padding: 4rem 1.5rem; }
-  .hero h1 { font-size: clamp(2.0rem, 2.2rem, 2.4rem); line-height: 1.25; }
   .hero p  { font-size: 1.05rem; }
 
-  /* Signup (Brevo iframe wrapper) – keep it comfortably wide */
-  .signup-embed { max-width: 900px; width: 100%; margin: 0 auto; }
-  .signup-card  { padding: 8px; border-radius: 14px; }
-  .signup-title { font-size: 1.5rem; line-height: 1.25; margin-bottom: 8px; }
-  .signup-sub   { font-size: 1rem; }
-  .iframe-wrap  { padding: 10px; }
-  .iframe-wrap iframe { height: 500px; }
+  .signup-embed { max-width: 900px; }
+  .signup-card  { padding: 10px; border-radius: 8px; }
+  .signup-title { font-size: 1.5rem; margin-bottom: 8px; }
+  .iframe-wrap iframe { height: 460px; }
 
-  /* Why comparison grid: stay 2 columns and centered */
   .comparison {
-    grid-template-columns: 1fr 1fr !important;
+    grid-template-columns: 1fr 1fr;
     max-width: 800px;
     margin: 2rem auto 0;
     justify-items: center;
     padding: 0 16px;
   }
   .comparison > div { max-width: 380px; width: 100%; }
-}
-
-/* OPTIONAL: quick visual proof — delete after confirming */
-@media (min-width: 600px) and (max-width: 1200px),
-       (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
-  .hero { outline: 4px solid #00c2ff; } /* remove after you see it */
-}
-/* === Force the Toolkit feature cards to STACK on tablets === */
-@media (min-width: 561px) and (max-width: 1200px) {
-  #toolkit .feature-grid {
-    grid-template-columns: 1fr;   /* stack */
-    max-width: 760px;             /* keep a comfy line length */
-    margin: 0 auto;               /* center the stack */
-    gap: 1.25rem;                 /* slightly tighter spacing */
-  }
-  #toolkit .feature {
-    text-align: left;             /* reads better when stacked */
-  }
-}
-/* Early Access card tweaks */
-.signup-card {
-  border: 2px solid #ff6600;   /* thinner border */
-  padding: 1rem;              /* reduce padding inside */
-  border-radius: 6px;         /* optional, softer corners */
-}
-/* Early Access orange box adjustments */
-.early-access {
-  padding: 20px; /* smaller padding (was likely 40px+) */
-  max-width: 500px; /* keep it neat on larger screens */
-  margin: 0 auto;
-  border-radius: 8px;
-}
-
-.early-access iframe {
-  width: 100% !important;
-  height: 320px; /* adjust height as needed */
-  border: none !important;
-  margin: 0;
-}
-/* === Tighten Early Access orange wrapper === */
-.signup-embed { max-width: 700px; margin: 0 auto; }  /* a bit narrower = less orange */
-.signup-card {
-  background: #ff6a00;
-  padding: 8px;                /* was ~20px */
-  border-radius: 12px;         /* keep soft corners */
-  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
-}
-
-.signup-title { margin: 4px 0 2px; }
-.signup-sub   { margin: 0 0 8px; }
-
-/* Remove extra padding/border around the iframe */
-.iframe-wrap {
-  padding: 0;                  /* was 10px */
-  border: none;                /* remove subtle border */
-  border-radius: 10px;         /* keep rounding consistent */
-  overflow: hidden;
-}
-
-/* Tablet sizing for the iframe itself */
-@media (min-width: 561px) and (max-width: 1200px) {
-  .iframe-wrap iframe { height: 460px; }
 }
