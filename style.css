@@ -418,3 +418,17 @@ footer {
   padding: 1rem;              /* reduce padding inside */
   border-radius: 6px;         /* optional, softer corners */
 }
+/* Early Access orange box adjustments */
+.early-access {
+  padding: 20px; /* smaller padding (was likely 40px+) */
+  max-width: 500px; /* keep it neat on larger screens */
+  margin: 0 auto;
+  border-radius: 8px;
+}
+
+.early-access iframe {
+  width: 100% !important;
+  height: 320px; /* adjust height as needed */
+  border: none !important;
+  margin: 0;
+}
