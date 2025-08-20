@@ -378,7 +378,7 @@ footer {
 
   /* Signup (Brevo iframe wrapper) – keep it comfortably wide */
   .signup-embed { max-width: 900px; width: 100%; margin: 0 auto; }
-  .signup-card  { padding: 20px; border-radius: 14px; }
+  .signup-card  { padding: 8px; border-radius: 14px; }
   .signup-title { font-size: 1.5rem; line-height: 1.25; margin-bottom: 8px; }
   .signup-sub   { font-size: 1rem; }
   .iframe-wrap  { padding: 10px; }
