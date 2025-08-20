@@ -10,6 +10,12 @@
 
   <!-- Brevo styles (harmless with iframe; keep if you later switch to inline form) -->
   <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
+
+  <!-- Tiny inline helpers so you don't have to touch style.css right now -->
+  <style>
+    .signup-note.subtle { font-size: 0.85rem; color: #666; margin-top: -8px; }
+    .hidden { display: none; }
+  </style>
 </head>
 <body>
   <!-- Header / Logo -->
@@ -85,6 +91,9 @@
         </div>
 
         <p class="signup-note">No spam. Unsubscribe anytime.</p>
+        <p class="signup-note subtle hidden" id="spam-reminder">
+          👉 If you don’t see a confirmation email, please check your spam or junk folder.
+        </p>
       </div>
     </div>
   </section>
@@ -93,5 +102,39 @@
   <footer>
     <p>&copy; 2025 Agravic Shift. All rights reserved.</p>
   </footer>
+
+  <!-- Show the spam reminder only after the iframe loads one of your same-origin confirmation pages -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const iframe = document.querySelector(".iframe-wrap iframe");
+      const spamNote = document.getElementById("spam-reminder");
+
+      if (!iframe || !spamNote) return;
+
+      function maybeShowNote() {
+        try {
+          // Only safe if the iframe currently displays a same-origin page (your domain)
+          const doc = iframe.contentDocument || iframe.contentWindow.document;
+          const loc = iframe.contentWindow.location;
+
+          // If Brevo redirected to your custom pages, the iframe is same-origin.
+          const sameOrigin = loc && location && loc.host === location.host;
+
+          if (sameOrigin) {
+            const path = (loc.pathname || "").toLowerCase();
+            if (path.includes("thankyou") || path.includes("confirmed")) {
+              spamNote.classList.remove("hidden");
+            }
+          }
+        } catch (e) {
+          // Cross-origin (Brevo form) -> do nothing; we only reveal on your own pages.
+        }
+      }
+
+      // Check on load and on future loads (after submit the iframe navigates)
+      iframe.addEventListener("load", maybeShowNote);
+      maybeShowNote();
+    });
+  </script>
 </body>
 </html>
