@@ -4,10 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Agravic Shift</title>
-  <link rel="stylesheet" href="style.css" />
-  <!-- Brevo minimal styles (not required for iframe, but harmless) -->
+
+  <!-- Versioned CSS to break cache -->
+  <link rel="stylesheet" href="style.css?v=9" />
+
+  <!-- Brevo minimal styles (optional for iframe) -->
   <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
-  <link rel="stylesheet" href="style.css?v=8" />
+
+  <!-- TEMP: iPad debug styles — remove after test -->
+  <style>
+    @media (min-width: 601px) and (max-width: 1180px) {
+      body::before {
+        content: "iPad rules active";
+        position: fixed;
+        left: 8px; bottom: 8px;
+        background: #ff0066; color: #fff;
+        font: 600 12px/1.2 Arial, sans-serif;
+        padding: 4px 6px; z-index: 99999;
+        border-radius: 4px;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Header / Logo -->
