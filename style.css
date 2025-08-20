@@ -320,6 +320,7 @@ footer {
   font-weight: bold;
   color: #ff9900;   /* your accent orange */
 }
+
 /* ==== Mobile polish (phones & small tablets) ==== */
 @media (max-width: 640px) {
   /* Header: prevent overlap, stack neatly */
@@ -396,7 +397,7 @@ footer {
   }
 }
 
-/* Mobile: stack the columns */
+/* Mobile: stack the comparison columns */
 @media (max-width: 820px) {
   .comparison {
     grid-template-columns: 1fr;
@@ -404,49 +405,68 @@ footer {
     justify-items: center;
   }
 }
-/* === Tablet / iPad Fixes === */
-@media (min-width: 601px) and (max-width: 1024px) {
-  /* Header: prevent logo/nav overlap */
+
+/* === Tablet / iPad Fixes (target iPads & similar viewports) === */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Header: stack to avoid logo/nav collisions */
   header {
     flex-direction: column;
     align-items: center;
+    gap: 10px;
+    padding: 1rem 1rem;
     text-align: center;
   }
-
+  .logo img {
+    height: 80px; /* between desktop 100 and mobile 64 */
+    width: auto;
+  }
   nav ul {
-    flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
-    margin-top: 0.5rem;
+    margin-top: 0.25rem;
   }
+  nav a { font-size: 1rem; }
 
-  /* Signup card: widen so text doesn’t collapse */
-  .signup-card {
-    max-width: 90%;
+  /* Hero spacing/type for tablets */
+  .hero {
+    padding: 4rem 1.5rem;
+  }
+  .hero h1 {
+    font-size: 2.2rem;
+    line-height: 1.25;
+  }
+  .hero p { font-size: 1.05rem; }
+
+  /* Signup (Brevo iframe wrapper) – keep it comfortably wide */
+  .signup-embed {
+    max-width: 860px;
+    width: 100%;
     margin: 0 auto;
   }
-
+  .signup-card {
+    padding: 20px;
+    border-radius: 14px;
+  }
   .signup-title {
-    font-size: 1.8rem;  /* stays bold but fits on one line */
+    font-size: 1.5rem;   /* avoids 3-line wraps */
+    line-height: 1.25;
+    margin-bottom: 8px;
   }
+  .signup-sub { font-size: 1rem; }
+  .iframe-wrap { padding: 10px; }
+  .iframe-wrap iframe { height: 480px; }
 
-  .iframe-wrap iframe {
-    height: 460px; /* give more room for iPad layout */
-  }
-
-  /* Comparison section: keep centered & balanced */
+  /* Why comparison grid: centered & balanced */
   .comparison {
     grid-template-columns: 1fr 1fr;
-    max-width: 700px;
+    max-width: 760px;
+    margin: 2rem auto 0;
+    justify-items: center;
+    padding: 0 16px;
   }
-}
-/* DEBUG: tablet flag — remove after confirming */
-@media (min-width: 601px) and (max-width: 1024px) {
-  html::after {
-    content: "tablet-css"; 
-    position: fixed; right: 6px; bottom: 6px;
-    background: #000; color: #fff; font-size: 10px; 
-    padding: 2px 4px; z-index: 9999;
+  .comparison > div {
+    max-width: 380px;
+    width: 100%;
   }
 }
