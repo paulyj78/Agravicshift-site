@@ -400,3 +400,15 @@ footer {
        (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
   .hero { outline: 4px solid #00c2ff; } /* remove after you see it */
 }
+/* === Force the Toolkit feature cards to STACK on tablets === */
+@media (min-width: 561px) and (max-width: 1200px) {
+  #toolkit .feature-grid {
+    grid-template-columns: 1fr;   /* stack */
+    max-width: 760px;             /* keep a comfy line length */
+    margin: 0 auto;               /* center the stack */
+    gap: 1.25rem;                 /* slightly tighter spacing */
+  }
+  #toolkit .feature {
+    text-align: left;             /* reads better when stacked */
+  }
+}
