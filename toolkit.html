@@ -3,52 +3,59 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agravic Shift Toolkit</title>
+  <title>The Manager Toolkit</title>
   <link rel="stylesheet" href="style.css?v=25" />
   <style>
-    /* Center align Preview, FAQ, and Return sections */
-    .preview,
-    .faq,
-    .return-home {
-      max-width: 800px;
-      margin: 0 auto;
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
       text-align: center;
-      padding: 2rem 1rem;
+      background: #fdfdfd;
     }
-
-    /* Remove bullets from list */
-    .preview ul {
-      list-style: none;
-      padding-left: 0;
+    h1, h2 {
+      margin-bottom: 15px;
     }
-
-    /* Center the return button */
-    .return-home .btn {
+    p {
+      max-width: 700px;
+      margin: 10px auto;
+      line-height: 1.6;
+    }
+    .preview, .faq, .return-home, .early-access {
+      margin: 40px auto;
+      max-width: 800px;
+      text-align: center;
+    }
+    ul {
+      list-style: none; /* removes default bullet dots */
+      padding: 0;
+      margin: 0 auto;
       display: inline-block;
-      margin-top: 1.5rem;
+      text-align: left;
+    }
+    li {
+      margin: 10px 0;
+      font-size: 1.1rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 10px;
+      text-decoration: none;
+      color: white;
+      border-radius: 5px;
+    }
+    .btn.primary {
+      background-color: #2c7a2c;
+    }
+    .btn.primary:hover {
+      background-color: #256325;
     }
   </style>
 </head>
 <body>
-  <!-- Header / Logo -->
-  <header>
-    <div class="logo">
-      <img src="assets/logo.png" alt="Agravic Shift Logo" />
-    </div>
-    <nav>
-      <ul>
-        <li><a href="index.html#toolkit">Toolkit</a></li>
-        <li><a href="index.html#why">Why Us</a></li>
-        <li><a href="index.html#signup">Get Started</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1>The Manager Toolkit</h1>
-    <p>Everything you need to lead with confidence, clarity, and common sense.</p>
-  </section>
+  <h1>The Manager Toolkit</h1>
+  <p>Everything you need to lead with confidence, clarity, and common sense.</p>
 
   <!-- Toolkit Previews -->
   <section class="preview">
@@ -70,9 +77,14 @@
     <p><strong>When is it available?</strong><br>Early access is open now. Join today to be first in line.</p>
   </section>
 
+  <!-- Early Access Button -->
+  <section class="early-access">
+    <a href="index.html#signup" class="btn primary">🚀 Get Early Access</a>
+  </section>
+
   <!-- Return Home Button -->
   <section class="return-home">
-    <a href="index.html" class="btn primary">⬅ Return to Home</a>
+    <a href="index.html" class="btn primary">⬅️ Return to Home</a>
   </section>
 
   <!-- Footer -->
