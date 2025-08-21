@@ -287,3 +287,18 @@ footer {
   height: 380px;        /* tweak if needed */
   border: 0;
 }
+/* Center align FAQ and Preview sections */
+.preview,
+.faq,
+.return-home {
+  max-width: 800px;       /* keeps content a nice readable width */
+  margin: 0 auto;         /* centers it horizontally */
+  text-align: center;     /* centers text and inline elements */
+  padding: 2rem 1rem;     /* adds breathing room */
+}
+
+/* Make the return button stand out in the center */
+.return-home .btn {
+  display: inline-block;
+  margin-top: 1.5rem;
+}
