@@ -339,3 +339,40 @@ footer {
     column-gap: 0.5rem;
   }
 }
+/* === Why Now checklist (bullet-proof) === */
+.why-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 1rem auto 0 !important;
+  max-width: 780px;
+  text-align: left;
+}
+
+.why-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin: 14px 0;
+}
+
+.why-list .check {
+  color: #ff9900;
+  font-weight: 800;
+  font-size: 1.1rem;
+  line-height: 1;
+  margin-top: 2px;      /* slight vertical nudge */
+  flex: 0 0 auto;
+}
+
+.why-list .why-title {
+  color: #ff9900;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.why-list .why-desc {
+  opacity: 0.95;
+}
+
+/* ensure good contrast inside the dark .why section */
+.why .why-desc { color: #fff; }
