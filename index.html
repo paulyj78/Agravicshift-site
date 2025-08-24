@@ -11,7 +11,7 @@
   <!-- Brevo styles (harmless with iframe; keep if you later switch to inline form) -->
   <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
 
-  <!-- Tiny inline helpers so you don't have to touch style.css right now -->
+  <!-- Tiny inline helpers -->
   <style>
     .signup-note.subtle { font-size: 0.85rem; color: #666; margin-top: -8px; }
     .hidden { display: none; }
@@ -25,8 +25,8 @@
     </div>
     <nav>
       <ul>
-        <li><a href="toolkit.html">Toolkit</a></li>
-        <li><a href="#why">Why Us</a></li>
+        <li><a href="/toolkit.html">Toolkit</a></li>
+        <li><a href="/pricing.html">Pricing</a></li>
         <li><a href="/faq.html">FAQ</a></li>
         <li><a href="#signup">Get Started</a></li>
       </ul>
@@ -38,7 +38,7 @@
     <h1>Leadership Doesn’t Need a Manual. It Needs a Toolkit.</h1>
     <p>Practical, modern, no-BS resources for today’s managers. Built for the real world, not the textbook.</p>
     <div class="cta-buttons">
-      <a href="toolkit.html" class="btn primary">Get the Toolkit</a>
+      <a href="#signup" class="btn primary">Get the Toolkit</a>
       <a href="#why" class="btn secondary">Learn More</a>
     </div>
   </section>
@@ -60,7 +60,7 @@
         <p>Access quick tips on the go—whether you’re at your desk or in the hallway.</p>
       </div>
     </div>
-  </section> <!-- ✅ Toolkit section closed -->
+  </section>
 
   <!-- Why Agravic Shift -->
   <section id="why" class="why">
@@ -101,38 +101,28 @@
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Agravic Shift. All rights reserved. | <a href="toolkit.html">Toolkit</a></p>
+    <p>&copy; 2025 Agravic Shift. All rights reserved.</p>
   </footer>
 
-  <!-- Show the spam reminder only after the iframe loads one of your same-origin confirmation pages -->
+  <!-- Show spam reminder only after Brevo iframe redirects to your custom pages -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const iframe = document.querySelector(".iframe-wrap iframe");
       const spamNote = document.getElementById("spam-reminder");
-
       if (!iframe || !spamNote) return;
 
       function maybeShowNote() {
         try {
-          // Only safe if the iframe currently displays a same-origin page (your domain)
-          const doc = iframe.contentDocument || iframe.contentWindow.document;
           const loc = iframe.contentWindow.location;
-
-          // If Brevo redirected to your custom pages, the iframe is same-origin.
           const sameOrigin = loc && location && loc.host === location.host;
-
           if (sameOrigin) {
             const path = (loc.pathname || "").toLowerCase();
             if (path.includes("thank-you") || path.includes("confirmed")) {
               spamNote.classList.remove("hidden");
             }
           }
-        } catch (e) {
-          // Cross-origin (Brevo form) -> do nothing; we only reveal on your own pages.
-        }
+        } catch (e) {}
       }
-
-      // Check on load and on future loads (after submit the iframe navigates)
       iframe.addEventListener("load", maybeShowNote);
       maybeShowNote();
     });
