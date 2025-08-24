@@ -376,3 +376,9 @@ footer {
 
 /* ensure good contrast inside the dark .why section */
 .why .why-desc { color: #fff; }
+/* Active Nav Highlight */
+nav a.active {
+  color: #ff6600; /* bright orange highlight */
+  border-bottom: 2px solid #ff6600; /* underline effect */
+  padding-bottom: 2px;
+}
