@@ -6,7 +6,7 @@
   <title>Agravic Shift</title>
 
   <!-- Your stylesheet (cache-busted) -->
-  <link rel="stylesheet" href="style.css?v=24" />
+  <link rel="stylesheet" href="style.css?v=25" />
 
   <!-- Brevo styles (harmless with iframe; keep if you later switch to inline form) -->
   <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
@@ -28,6 +28,7 @@
         <li><a href="/toolkit.html">Toolkit</a></li>
         <li><a href="/pricing.html">Pricing</a></li>
         <li><a href="/faq.html">FAQ</a></li>
+        <li><a href="/about.html">About</a></li>
         <li><a href="#signup">Get Started</a></li>
       </ul>
     </nav>
@@ -38,7 +39,7 @@
     <h1>Leadership Doesn’t Need a Manual. It Needs a Toolkit.</h1>
     <p>Practical, modern, no-BS resources for today’s managers. Built for the real world, not the textbook.</p>
     <div class="cta-buttons">
-      <a href="#signup" class="btn primary">Get the Toolkit</a>
+      <a href="/toolkit.html" class="btn primary">Get the Toolkit</a>
       <a href="#why" class="btn secondary">Learn More</a>
     </div>
   </section>
@@ -104,11 +105,12 @@
     <p>&copy; 2025 Agravic Shift. All rights reserved.</p>
   </footer>
 
-  <!-- Show spam reminder only after Brevo iframe redirects to your custom pages -->
+  <!-- Show spam reminder only after custom pages load in iframe -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const iframe = document.querySelector(".iframe-wrap iframe");
       const spamNote = document.getElementById("spam-reminder");
+
       if (!iframe || !spamNote) return;
 
       function maybeShowNote() {
@@ -123,6 +125,7 @@
           }
         } catch (e) {}
       }
+
       iframe.addEventListener("load", maybeShowNote);
       maybeShowNote();
     });
