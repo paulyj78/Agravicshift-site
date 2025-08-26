@@ -4,11 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Thank You – Agravic Shift</title>
-  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQBKN3CDNE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PQBKN3CDNE', { debug_mode: true }); // turn off debug later
+
+    // Fire the signup completion event on page load
+    gtag('event', 'signup_completed', {
+      method: 'brevo',
+      step: 'thank_you',
+      page_path: location.pathname
+    });
+  </script>
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="style.css?v=26" />
+
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #111; /* dark background to match site */
+      background: #111;
       color: #fff;
       text-align: center;
       padding: 50px 20px;
@@ -19,7 +38,7 @@
       background: #1c1c1c;
       padding: 40px;
       border-radius: 10px;
-      box-shadow: 0px 0px 20px rgba(255, 102, 0, 0.6);
+      box-shadow: 0 0 20px rgba(255,102,0,0.6);
     }
     .thankyou-container img {
       max-width: 150px;
@@ -54,10 +73,10 @@
     <img src="assets/logo.png" alt="Agravic Shift Logo" />
     <h1>Thank You!</h1>
     <p>
-      You’ve successfully joined the <strong>Agravic Shift</strong> early access list.  
-      We’ll keep you in the loop with updates, tools, and insights made for modern leaders.  
+      You’ve successfully joined the <strong>Agravic Shift</strong> early access list.
+      We’ll keep you in the loop with updates, tools, and insights made for modern leaders.
     </p>
-    <a href="index.html" class="button">Back to Homepage</a>
+    <a href="/" class="button">Back to Homepage</a>
   </div>
 </body>
 </html>
