@@ -1,28 +1,106 @@
-name: Generate Sitemap
+name: Build dynamic sitemap.xml
 
 on:
   push:
     branches: [ main ]
+  schedule:
+    - cron: "0 6 * * 1"   # every Monday 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
-  build:
+  generate:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Set up Node
-        uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          node-version: '18'
+          fetch-depth: 0   # needed to read last git commit dates
 
-      - name: Generate sitemap
-        run: node generate-sitemap.js
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
 
-      - name: Commit and push sitemap
+      - name: Generate sitemap.xml
+        env:
+          BASE_URL: https://www.agravicshift.com
         run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
-          git add sitemap.xml
-          git commit -m "chore: auto-update sitemap.xml [skip ci]" || echo "No changes to commit"
-          git push
+          python - << 'PY'
+          import os, sys, subprocess, html, pathlib, datetime
+
+          BASE_URL = os.environ["BASE_URL"].rstrip("/")
+          repo_root = pathlib.Path(".").resolve()
+
+          # Collect .html files (skip hidden and non-site folders)
+          EXCLUDE_DIRS = {".git", ".github", ".vercel", "node_modules"}
+          paths = []
+          for root, dirs, files in os.walk(repo_root):
+              # prune excluded dirs
+              dirs[:] = [d for d in dirs if d not in EXCLUDE_DIRS and not d.startswith(".")]
+              for f in files:
+                  if f.endswith(".html"):
+                      p = pathlib.Path(root) / f
+                      rel = p.relative_to(repo_root).as_posix()
+                      paths.append(rel)
+
+          # Priority rules
+          def priority_for(path):
+              p = "/" + path
+              if p == "/index.html": return "1.0"
+              if p in ("/toolkit.html", "/pricing.html"): return "0.8"
+              if p in ("/faq.html", "/about.html"): return "0.6"
+              if p in ("/thank-you.html", "/confirmed.html"): return "0.5"
+              if p.startswith("/insights/"): return "0.6"
+              return "0.5"
+
+          # Convert /index.html to site root in the sitemap
+          def loc_for(path):
+              if path == "index.html":
+                  return BASE_URL + "/"
+              return f"{BASE_URL}/{path}"
+
+          # last modified (ISO-8601) from git if available
+          def lastmod(path):
+              try:
+                  iso = subprocess.check_output(
+                      ["git","log","-1","--format=%cI","--", path],
+                      text=True
+                  ).strip()
+                  return iso or None
+              except Exception:
+                  return None
+
+          urls = []
+          for path in sorted(paths):
+              loc = loc_for(path)
+              pri = priority_for(path)
+              lm  = lastmod(path)
+              urls.append((loc, pri, lm))
+
+          # Build XML
+          lines = []
+          lines.append('<?xml version="1.0" encoding="UTF-8"?>')
+          lines.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
+          for loc, pri, lm in urls:
+              lines.append("  <url>")
+              lines.append(f"    <loc>{html.escape(loc)}</loc>")
+              if lm:
+                  lines.append(f"    <lastmod>{lm}</lastmod>")
+              lines.append(f"    <priority>{pri}</priority>")
+              lines.append("  </url>")
+          lines.append("</urlset>")
+
+          out = "\n".join(lines) + "\n"
+          pathlib.Path("sitemap.xml").write_text(out, encoding="utf-8")
+          print("Wrote sitemap.xml with", len(urls), "URLs")
+          PY
+
+      - name: Commit & push sitemap.xml
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update sitemap.xml"
+          file_pattern: sitemap.xml
