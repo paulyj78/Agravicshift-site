@@ -1,0 +1,28 @@
+name: Generate Sitemap
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Generate sitemap
+        run: node generate-sitemap.js
+
+      - name: Commit and push sitemap
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add sitemap.xml
+          git commit -m "chore: auto-update sitemap.xml [skip ci]" || echo "No changes to commit"
+          git push
