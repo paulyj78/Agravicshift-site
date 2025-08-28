@@ -13,12 +13,11 @@ permissions:
 jobs:
   generate:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # needed to read last git commit dates
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -30,26 +29,26 @@ jobs:
           BASE_URL: https://www.agravicshift.com
         run: |
           python - << 'PY'
-          import os, sys, subprocess, html, pathlib, datetime
+          import os, sys, subprocess, html, pathlib
 
           BASE_URL = os.environ["BASE_URL"].rstrip("/")
-          repo_root = pathlib.Path(".").resolve()
+          root = pathlib.Path(".").resolve()
 
-          # Collect .html files (skip hidden and non-site folders)
-          EXCLUDE_DIRS = {".git", ".github", ".vercel", "node_modules"}
+          EXCLUDE_DIRS = {".git", ".github", ".vercel", "node_modules", "templates", "_drafts"}
+          EXCLUDE_FILES = {"404.html"}  # add more if needed
+
           paths = []
-          for root, dirs, files in os.walk(repo_root):
-              # prune excluded dirs
-              dirs[:] = [d for d in dirs if d not in EXCLUDE_DIRS and not d.startswith(".")]
-              for f in files:
-                  if f.endswith(".html"):
-                      p = pathlib.Path(root) / f
-                      rel = p.relative_to(repo_root).as_posix()
-                      paths.append(rel)
+          for dirpath, dirnames, filenames in os.walk(root):
+              dirnames[:] = [d for d in dirnames if d not in EXCLUDE_DIRS and not d.startswith(".")]
+              for f in filenames:
+                  if not f.endswith(".html"): continue
+                  if f in EXCLUDE_FILES: continue
+                  p = pathlib.Path(dirpath) / f
+                  rel = p.relative_to(root).as_posix()
+                  paths.append(rel)
 
-          # Priority rules
-          def priority_for(path):
-              p = "/" + path
+          def priority_for(rel):
+              p = "/" + rel
               if p == "/index.html": return "1.0"
               if p in ("/toolkit.html", "/pricing.html"): return "0.8"
               if p in ("/faq.html", "/about.html"): return "0.6"
@@ -57,17 +56,13 @@ jobs:
               if p.startswith("/insights/"): return "0.6"
               return "0.5"
 
-          # Convert /index.html to site root in the sitemap
-          def loc_for(path):
-              if path == "index.html":
-                  return BASE_URL + "/"
-              return f"{BASE_URL}/{path}"
+          def loc_for(rel):
+              return BASE_URL + "/" if rel == "index.html" else f"{BASE_URL}/{rel}"
 
-          # last modified (ISO-8601) from git if available
-          def lastmod(path):
+          def lastmod(rel):
               try:
                   iso = subprocess.check_output(
-                      ["git","log","-1","--format=%cI","--", path],
+                      ["git","log","-1","--format=%cI","--", rel],
                       text=True
                   ).strip()
                   return iso or None
@@ -75,16 +70,13 @@ jobs:
                   return None
 
           urls = []
-          for path in sorted(paths):
-              loc = loc_for(path)
-              pri = priority_for(path)
-              lm  = lastmod(path)
-              urls.append((loc, pri, lm))
+          for rel in sorted(paths):
+              urls.append((loc_for(rel), priority_for(rel), lastmod(rel)))
 
-          # Build XML
-          lines = []
-          lines.append('<?xml version="1.0" encoding="UTF-8"?>')
-          lines.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
+          lines = [
+              '<?xml version="1.0" encoding="UTF-8"?>',
+              '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+          ]
           for loc, pri, lm in urls:
               lines.append("  <url>")
               lines.append(f"    <loc>{html.escape(loc)}</loc>")
@@ -92,15 +84,29 @@ jobs:
                   lines.append(f"    <lastmod>{lm}</lastmod>")
               lines.append(f"    <priority>{pri}</priority>")
               lines.append("  </url>")
-          lines.append("</urlset>")
+          lines.append("</urlset>\n")
 
-          out = "\n".join(lines) + "\n"
-          pathlib.Path("sitemap.xml").write_text(out, encoding="utf-8")
-          print("Wrote sitemap.xml with", len(urls), "URLs")
+          pathlib.Path("sitemap.xml").write_text("\n".join(lines), encoding="utf-8")
+          print(f"Wrote sitemap.xml with {len(urls)} URLs")
           PY
+
+      - name: Validate XML (xmllint)
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y libxml2-utils
+          xmllint --noout sitemap.xml
 
       - name: Commit & push sitemap.xml
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: update sitemap.xml"
           file_pattern: sitemap.xml
+
+      # Optional: ping search engines (safe to keep; they may ignore but never hurts)
+      - name: Ping Google & Bing
+        if: ${{ github.ref == 'refs/heads/main' }}
+        run: |
+          SITE="https://www.agravicshift.com/sitemap.xml"
+          echo "Pinging Google & Bing with $SITE"
+          curl -fsS "https://www.google.com/ping?sitemap=${SITE}" || true
+          curl -fsS "https://www.bing.com/ping?sitemap=${SITE}" || true
