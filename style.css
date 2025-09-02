@@ -423,3 +423,20 @@ nav a.active {
   text-align: center;
   margin: 2rem 0 2.5rem;
 }
+/* Social Links */
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 16px; /* space between icons */
+  margin-top: 1rem;
+}
+
+.social-links img {
+  width: 32px;   /* adjust size */
+  height: auto;  /* keep proportions */
+  transition: transform 0.2s ease;
+}
+
+.social-links img:hover {
+  transform: scale(1.15); /* subtle zoom on hover */
+}
